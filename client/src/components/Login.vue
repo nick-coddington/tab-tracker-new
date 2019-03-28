@@ -15,11 +15,12 @@
           <v-text-field
             Label="Password"
             placeholder="Password"
+            type="password"
             v-model="password">
           </v-text-field>
           <br>
           <div class="error" v-html="error" />
-          <v-btn class="cyan" dark @click="loginr">Login</v-btn>
+          <v-btn class="cyan" dark @click="login">Login</v-btn>
           </div>
       </div>
     </v-flex>
@@ -39,10 +40,12 @@ export default {
   methods: {
     async login () {
       try {
-        await AuthenticationService.login({
+        const repsone = await AuthenticationService.login({
           email: this.email,
           password: this.password
         })
+        this.$store.dispatch('setToken', repsone.data.token)
+        this.$store.dispatch('setUser', repsone.data.user)
       } catch (error) {
         this.error = error.response.data.error
       }

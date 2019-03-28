@@ -1,23 +1,40 @@
 <template>
-    <v-toolbar fixed class="cyan">
-      <v-toolbar-title dark class="mr-4">
-          <span class="home" @click="navigateTo({name: 'root'})">TabTracker</span>
-      </v-toolbar-title>
-      <!--<v-toolbar-items>
-          <v-btn flat dark>
-              Browse
-          </v-btn>
-      </v-toolbar-items>-->
-      <v-spacer></v-spacer>
-          <v-toolbar-items>
-              <v-btn flat dark @click="navigateTo({name: 'login'})">
-                 Login
-              </v-btn>
-              <v-btn flat dark @click="navigateTo({name: 'registration'})">
-                 Sign Up
-              </v-btn>
-          </v-toolbar-items>
-    </v-toolbar>
+  <v-toolbar fixed class="cyan" dark>
+    <v-toolbar-title class="mr-4">
+      <span
+        class="home"
+        @click="navigateTo({name: 'root'})">
+        TabTracker
+      </span>
+    </v-toolbar-title>
+
+    <!-- TODO: Implement Me -->
+    <!-- <v-toolbar-items>
+      <v-btn flat dark>
+        Browse
+      </v-btn>
+    </v-toolbar-items> -->
+
+    <v-spacer></v-spacer>
+
+    <v-toolbar-items>
+      <v-btn
+        v-if="!$store.state.isUserLoggedIn"
+        flat
+        dark
+        @click="navigateTo({name: 'login'})">
+        Login
+      </v-btn>
+
+      <v-btn
+        v-if="!$store.state.isUserLoggedIn"
+        flat
+        dark
+        @click="navigateTo({name: 'registration'})">
+        Sign Up
+      </v-btn>
+    </v-toolbar-items>
+  </v-toolbar>
 </template>
 
 <script>
@@ -32,9 +49,9 @@ export default {
 
 <style scoped>
 .home {
-    cursor: pointer;
+  cursor: pointer;
 }
 .home:hover {
-    color: #E9E
+  color: #E9E;
 }
 </style>
